@@ -3,9 +3,9 @@ sequenceDiagram
     participant browser
     participant server
  
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
     activate server
-    server-->>browser: HTML document
+    server-->>browser: HTML document for SPA
     deactivate server
  
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
@@ -18,20 +18,12 @@ sequenceDiagram
     server-->>browser: the JavaScript file
     deactivate server
  
-    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+    Note right of browser: The browser executes the JavaScript to set up the SPA
  
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
     server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
     deactivate server
  
-    Note over browser: User writes a note in the text field and clicks the Save button
- 
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server
-    server-->>browser: { "status": "success", "id": "123" }
-    deactivate server
- 
- 
-    Note right of browser: The browser executes the callback function that renders the notes
+    Note right of browser: The SPA renders the notes using the fetched data
 ```
