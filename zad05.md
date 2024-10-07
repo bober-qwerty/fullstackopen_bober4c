@@ -1,17 +1,20 @@
 ```mermaid
 sequenceDiagram
-    participant User as Użytkownik
-    participant Browser as Przeglądarka
-    participant Server as Serwer
+    participant browser
+    participant server
 
-    Użytkownik->>Przeglądarka: Wprowadza adres URL `https://studies.cs.helsinki.fi/exampleapp/spa`
-    Przeglądarka->>Serwer: Żądanie HTTP GET (HTML plik)
-    Serwer-->>Przeglądarka: Odpowiedź HTML (struktura SPA)
-    Przeglądarka->>Przeglądarka: Wczytuje plik JavaScript (spa.js)
-    Przeglądarka->>Serwer: Żądanie HTTP GET (spa.js)
-    Serwer-->>Przeglądarka: Odpowiedź spa.js (kod aplikacji SPA)
-    Przeglądarka->>Przeglądarka: Wykonuje kod JavaScript, renderuje widok
-    Przeglądarka->>Serwer: Żądanie HTTP GET (dane notatek - /data.json)
-    Serwer-->>Przeglądarka: Odpowiedź (lista notatek w formacie JSON)
-    Przeglądarka->>Przeglądarka: Aktualizacja widoku z notatkami
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML code
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: JS code
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{"content":"content","date":"2023-09-14T11:04:00.912Z"},...]
+    deactivate server
 ```
