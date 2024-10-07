@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant User as Użytkownik
     participant Browser as Przeglądarka
@@ -13,3 +14,4 @@ sequenceDiagram
     Przeglądarka->>Serwer: Żądanie HTTP GET (dane notatek - /data.json)
     Serwer-->>Przeglądarka: Odpowiedź (lista notatek w formacie JSON)
     Przeglądarka->>Przeglądarka: Aktualizacja widoku z notatkami
+```
